@@ -70,11 +70,12 @@ def c_p_details(myRec):
 			# if null temporary put it as none
 			cPersonalDetails[i] = ''
 			pPersonalDetails[i] = ''
-	worksheet_list = [cPersonalDetails, pPersonalDetails]
+	# worksheet_list = [cPersonalDetails, pPersonalDetails]
 	# for i in xrange(len(worksheet_list)):
 	# 	all_[i] = worksheet_list[i]
-	# return all_
+		# print all_
 	write_json('test2.json', cPersonalDetails)
+	write_json('test2.json', ',')
 	write_json('test2.json', pPersonalDetails)
 	# print cPersonalDetails
 	# print pPersonalDetails
@@ -248,10 +249,11 @@ def parse(parameter):
 	jobs = []
 	# pp = Pool(processes=4)
 	if AssetTBL_all:
+		# print AssetTBL_all
 		# for worksheet in  AssetTBL_all:
 			# print type(worksheet)
 			# print worksheet
-		write_json('test2.json', AssetTBL_all)
+		# write_json('test2.json', AssetTBL_all)
 			# parameter = sheet, worksheet
 			# update_sheet(parameter)
 			# write_append('naks2', str(parameter))
@@ -276,8 +278,10 @@ def parse(parameter):
 		# 	jobs.append(parameter)
 		# P.map(update_sheet, jobs)
 		# print myRec2
+		# myRec += myRec2
+		# print myRec
 		c_p_details(myRec2)
-		print '*' * 5
+		# print '*' * 5
 		# return myRec2
 		# write_append('naks', str(myRec2))
 
@@ -409,18 +413,21 @@ ret_c_p_details(parameter)
 
 #Writing to gsheet
 
-P = Pool(processes=8)
-jobs = read_json('test2.json')
-key = "1M3qsO6IkPoVFBHYkqVgDlC18KQmeP9RaU3TbGuFEqk0"
-sheet = access_sheet(key)
+# P = Pool(processes=8)
+# jobs = read_json('test2.json')
+# key = "1M3qsO6IkPoVFBHYkqVgDlC18KQmeP9RaU3TbGuFEqk0"
+# sheet = access_sheet(key)
 
-filename = 'record'
-create_file(filename)
+# filename = 'record'
+# create_file(filename)
 
-jobs = [(sheet, worksheet) for worksheet in jobs]
-P.map(update_sheet, jobs)
+# jobs = [(sheet, worksheet) for worksheet in jobs]
+# P.map(update_sheet, jobs)
 
-remove_file(filename)
+# remove_file(filename)
+
+
+#sudo kill -9 `ps -fA | grep helloflask | awk '{print $2}'`
 
 
 
