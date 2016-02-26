@@ -237,26 +237,40 @@ def calc_duration(number):
 	END = today + duration
 	return END
 
+# Update Json file but not sure if this can be use now 
 def write_json(filename, data):
 	import codecs
-	# with codecs.open(filename, 'a', 'utf8') as f:
-	# 	f.write(json.dumps(data, sort_keys = True, ensure_ascii=False))
-	# 	f.close()
 	with codecs.open(filename, 'a', 'utf8') as f:
 		f.write(json.dumps(data, f, sort_keys = True, ensure_ascii=False))
 		f.close()
+# Read Json file and return as list
 def read_json(filename):
 	with open(filename) as json_file:
 		json_data = json.load(json_file)
 	return list(json_data)
+# Initial file and make it writable
 def init_json(filename):
-	# import os
-	# import stat
-
-	# st = os.stat('somefile')
-	# os.chmod('somefile', st.st_mode | stat.S_IEXEC)
-	# 
 	open(filename, 'w').close() 
 	st = os.stat(filename)
 	os.chmod(filename, st.st_mode | 0o111)
+
+# Reading JSON file and append/update attribute accordingly
+def update_json(filename, attribute):
+	# data={}
+	try:
+		with open(filename, "r") as jsonFile:
+			data = json.load(jsonFile)
+	except:
+		data = {}
+	len_ = str(len(data.keys()))
+	data[len_] = attribute
+	print data
+	with open(filename, "w") as jsonFile:
+		jsonFile.write(json.dumps(data))
+# Reading JSON file and return keys and values accordingly
+def get_json_key_val(filename):
+	with open(filename, "r") as jsonFile:
+		data = json.load(jsonFile)
+	return data.keys(), data.values()
+
 

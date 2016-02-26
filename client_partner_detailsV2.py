@@ -74,9 +74,11 @@ def c_p_details(myRec):
 	# for i in xrange(len(worksheet_list)):
 	# 	all_[i] = worksheet_list[i]
 		# print all_
-	write_json('test2.json', cPersonalDetails)
-	write_json('test2.json', ',')
-	write_json('test2.json', pPersonalDetails)
+	# write_json('test2.json', cPersonalDetails)
+	# write_json('test2.json', ',')
+	# write_json('test2.json', pPersonalDetails)
+	update_json('test2.json', cPersonalDetails)
+	update_json('test2.json', cPersonalDetails)
 	# print cPersonalDetails
 	# print pPersonalDetails
 #def parse(br, URL):
@@ -207,18 +209,21 @@ def parse(parameter):
 				AssetsTbl['Percentage'] = value 
 				AssetsTbl['Legend'] = ''
 				AssetTBL_all.append(AssetsTbl)
+				update_json('test2.json', AssetsTbl)
 				AssetsTbl = {'worksheet':'AssetsTbl'}
 			if flag == 1:
 				AssetsTbl_Entity1['Equity'] = all_data[inc]
 				AssetsTbl_Entity1['Percentage'] = value 
 				AssetsTbl_Entity1['Legend'] = ''
 				AssetTBL_all.append(AssetsTbl_Entity1)
+				update_json('test2.json', AssetsTbl_Entity1)
 				AssetsTbl_Entity1 = {'worksheet':'AssetsTbl_Entity1'}
 			elif flag == 2:
 				AssetsTbl_Entity2['Equity'] = all_data[inc]
 				AssetsTbl_Entity2['Percentage'] = value
 				AssetsTbl_Entity2['Legend'] = ''
 				AssetTBL_all.append(AssetsTbl_Entity2)
+				update_json('test2.json', AssetsTbl_Entity2)
 				AssetsTbl_Entity2 = {'worksheet':'AssetsTbl_Entity2'}				
 				# print all_data[inc], i[1			elif flag == 1:
 			elif flag == 3:
@@ -226,18 +231,21 @@ def parse(parameter):
 				AssetsTbl_Entity3['Percentage'] = value 
 				AssetsTbl_Entity3['Legend'] = ''
 				AssetTBL_all.append(AssetsTbl_Entity3)
+				update_json('test2.json', AssetsTbl_Entity3)
 				AssetsTbl_Entity3 = {'worksheet':'AssetsTbl_Entity3'}
 			elif flag == 4:
 				AssetsTbl_Entity4['Equity'] = all_data[inc]
 				AssetsTbl_Entity4['Percentage'] = value 
 				AssetsTbl_Entity4['Legend'] = ''
 				AssetTBL_all.append(AssetsTbl_Entity4)
+				update_json('test2.json', AssetsTbl_Entity4)
 				AssetsTbl_Entity4 = {'worksheet':'AssetsTbl_Entity4'}
 			elif flag == 5:
 				AssetsTbl_Entity5['Equity'] = all_data[inc]
 				AssetsTbl_Entity5['Percentage'] = value
 				AssetsTbl_Entity5['Legend'] = ''
 				AssetTBL_all.append(AssetsTbl_Entity5)
+				update_json('test2.json', AssetsTbl_Entity5)
 				AssetsTbl_Entity4 = {'worksheet':'AssetsTbl_Entity5'}		
 		inc += 1
 		if inc == myL:
@@ -309,62 +317,6 @@ def login(parameter):
 	P.map(parse, URLs)
 	return br
 
-# def c_p_details(myRec):
-# 	key = [ 'XPLAN Entity ID',
-# 		'Title',
-# 		'Surname',
-# 		'Second Name',
-# 		'Maiden Name',
-# 		'Preferred Name',
-# 		'Initials',
-# 		'Gender',
-# 		'Date of Birth',
-# 		'Date of Death',
-# 		'Marital Status',
-# 		'Nationality',
-# 		'Native Language',
-# 		'Tax File Number',
-# 		'Occupation',
-# 		'Employer',
-# 		'Employment Income',
-# 		'Health',
-# 		'Smoker',
-# 		'Will Exists',
-# 		'Power of Attorney',
-# 		'Last reviewed',
-# 		'Address Line 1',
-# 		'Address Line 2']
-# 	cPersonalDetails = {'worksheet': 'cPersonalDetails'}
-# 	pPersonalDetails = {'worksheet': 'pPersonalDetails'}
-# 	all_ = {} 
-# 	for i in key:
-# 		try:
-# 			data = myRec[i]
-# 			index1 = data[0]
-# 			index2 = data[1]
-# 			if not index1:
-# 				index1 = ''
-# 			if not index2:
-# 				index2 = ''
-# 			if i == 'Date of Birth':
-# 				DOB1, age1 = return_DOB_age(index1)
-# 				DOB2, age2 = return_DOB_age(index2)	
-# 				cPersonalDetails[i] = DOB1
-# 				pPersonalDetails[i] = DOB2	
-# 				cPersonalDetails['Age'] = age1
-# 				pPersonalDetails['Age'] = age2	
-# 			else:
-# 				cPersonalDetails[i] = index1
-# 				pPersonalDetails[i] = index2
-# 		except:
-# 			# if null temporary put it as none
-# 			cPersonalDetails[i] = ''
-# 			pPersonalDetails[i] = ''
-# 	worksheet_list = [cPersonalDetails, pPersonalDetails]
-# 	for i in xrange(len(worksheet_list)):
-# 		# all_[i] = worksheet_list[i]
-# 		print worksheet_list[i]
-	# return all_
 
 def ret_c_p_details(parameter):
 	global myRec
@@ -383,15 +335,6 @@ def ret_c_p_details(parameter):
 				]
 		for i in URLs_:
 			URLs.append(i)
-	# URLs = [ "https://xplan.mlc.com.au/factfind/view/%s?role=client&page=main" % (userid),
-	# 		"https://xplan.mlc.com.au/factfind/view/%s?role=client&page=estate" % (userid),
-	# 		# "https://xplan.mlc.com.au/factfind/view/%s?role=client&page=main" % (userid),
-	# 		"https://xplan.mlc.com.au/factfind/view/%s?role=client&page=personal_habits" % (userid),
-	# 		"https://xplan.mlc.com.au/factfind/view/%s?role=client&page=investment" % (userid)
-	# 		]
-	# URLs = ["https://xplan.mlc.com.au/factfind/view/%s?role=client&page=main" % (userid)]
-	# URL = [(uri) for userid in userids for uri in URLS_]
-	# write_append('naks', str(URLs))
 	url = "https://xplan.mlc.com.au/home/logoff?"
  
 	parameter = uname, password, URLs
